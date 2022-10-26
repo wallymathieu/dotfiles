@@ -1,0 +1,35 @@
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[alias]
+  com = checkout master
+  comp = !git checkout master && git pull
+  subh = submodule update --init --recursive
+  subp = submodule foreach git comp
+  s = status
+  # get current branch name
+  branch-name = rev-parse --abbrev-ref HEAD
+  # Pushes the current branch to the remote "origin" (or the remote passed as the parameter)
+  # and set it to track the upstream branch
+  publish = "!sh -c 'git push -u ${1:-origin} $(git branch-name)' -"
+  # https://stackoverflow.com/questions/11623862/fetch-in-git-doesnt-get-all-branches#comment15394706_11623862
+  sub-set-origin = submodule foreach git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+  # from https://github.com/aaronpowell/system-init/blob/master/common/.gitconfig
+  gl = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  unstage = reset HEAD $1
+  co = checkout
+  cb = checkout -b
+  email = config user.email
+
+  g-email = config --global user.email  
+  g-gpg = config --global commit.gpgsign 
+[include]
+  path = ~/.gitconfig.local
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+[mergetool]
+  prompt = false
+
