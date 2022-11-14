@@ -6,6 +6,3 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
-alias vimdiff='nvim -d'
-export EDITOR=nvim
-alias vim='nvim'
