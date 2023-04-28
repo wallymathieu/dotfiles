@@ -23,8 +23,18 @@
   cb = checkout -b
   email = config user.email
 
-  g-email = config --global user.email  
-  g-gpg = config --global commit.gpgsign 
+  glob-email = config --global user.email  
+  glob-gpg = config --global commit.gpgsign 
+  
+  # 
+  # Depends on glob-workemail, glob-gitemail, gitemail, workemail
+  glob-gpg = config --global commit.gpgsign 
+  glob-gpg-t = !git glob-gpg true
+  glob-gpg-f = !git glob-gpg false 
+  glob-work = !git glob-gpg-f && git glob-workemail
+  glob-os = !git glob-gpg-t && git glob-gitemail
+  repo-os = !git config commit.gpgsign true && git gitemail
+  repo-work = !git config commit.gpgsign false && git workemail
 [include]
   path = ~/.gitconfig.local
 [merge]
