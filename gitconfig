@@ -4,7 +4,7 @@
   process = git-lfs filter-process
   required = true
 [alias]
-  com = !(git checkout master || git checkout main)
+  com = !(git checkout master 2> /dev/null || git checkout main)
   comp = !git com && git pull
   subh = submodule update --init --recursive
   subp = submodule foreach git comp
