@@ -4,8 +4,13 @@
   process = git-lfs filter-process
   required = true
 [alias]
+  # Checkout main or master
   com = !(git checkout master 2> /dev/null || git checkout main)
   comp = !git com && git pull
+  # Checkout develop or dev 
+  cod = !(git checkout dev 2> /dev/null || git checkout develop)
+  codp = !git cod && git pull
+
   subh = submodule update --init --recursive
   subp = submodule foreach git comp
   s = status
