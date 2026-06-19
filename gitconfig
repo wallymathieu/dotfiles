@@ -42,6 +42,8 @@
   repo-work = !git config commit.gpgsign false && git workemail
 [include]
   path = ~/.gitconfig.local
+[includeIf "gitdir:~/src/work/"]
+  path = ~/.gitconfig.work
 [merge]
   tool = vimdiff
   conflictstyle = diff3
