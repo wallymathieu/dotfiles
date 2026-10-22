@@ -52,3 +52,9 @@
 
 [commit]
 	gpgsign = false
+
+[worktree]
+	useRelativePaths = true
+[extensions]
+	relativeWorktrees = true
+
